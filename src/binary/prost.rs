@@ -10,7 +10,7 @@ use crate::{Decoder, Encoder};
 /// To use it with local storage in the example below we wrap it with [`Base64`] to represent the bytes as a string.
 ///
 /// ## Example
-/// ```
+/// ```ignore
 /// # use leptos::*;
 /// # use leptos_use::storage::{StorageType, use_local_storage, use_session_storage, use_storage, UseStorageOptions};
 /// # use codee::{string::Base64, binary::ProstCodec};

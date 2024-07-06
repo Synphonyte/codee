@@ -21,4 +21,4 @@ bincode_serde = ["dep:bincode", "dep:serde"]
 [dev-dependencies]
 serde = { version = "1", features = ["derive"] }
 leptos = "0.6"
-leptos-use = { path = "../leptos-use" }
+leptos-use = "0.10"

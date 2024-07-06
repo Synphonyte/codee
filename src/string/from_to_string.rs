@@ -8,7 +8,7 @@ use std::str::FromStr;
 /// simply data structures without depending on third party crates like serde and serde_json.
 ///
 /// ## Example
-/// ```
+/// ```ignore
 /// # use leptos::*;
 /// # use leptos_use::storage::{StorageType, use_local_storage, use_session_storage, use_storage, UseStorageOptions};
 /// # use codee::string::FromToStringCodec;

@@ -6,7 +6,7 @@ use crate::{Decoder, Encoder};
 ///
 /// ## Example
 ///
-/// ```
+/// ```ignore
 /// # use leptos::*;
 /// # use leptos_use::storage::{StorageType, use_local_storage, use_session_storage, use_storage, UseStorageOptions};
 /// # use serde::{Deserialize, Serialize};
