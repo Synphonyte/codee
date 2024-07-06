@@ -7,9 +7,9 @@
 
 Easy and flexible way of encoding and decoding data into either strings or bytes.
 
-This crate provides generic traits for [`Encoder`]s and [`Decoder`]s as well as several
+This crate provides generic traits for `Encoder`s and `Decoder`s as well as several
 implementations for commonly used (de)serializer crates.
-
+    
 This makes it easily possible to abstract away the serialization and deserialization independent
 of the concrete crate used. You can write a function like this:
 
