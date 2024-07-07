@@ -47,9 +47,9 @@
 //!
 //! #### Adapters
 //!
-//! - [`Base64`] —
+//! - [`string::Base64`] —
 //!   Wraps a binary codec and make it a string codec by representing the binary data as a base64 string.
-//! - [`OptionCodec`] —
+//! - [`string::OptionCodec`] —
 //!   Wraps a string codec that encodes `T` to create a codec that encodes `Option<T>`.
 //!
 //! ### Binary Codecs
