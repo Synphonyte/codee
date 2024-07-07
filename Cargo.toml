@@ -30,3 +30,6 @@ bincode_serde = ["dep:bincode", "dep:serde"]
 serde = { version = "1", features = ["derive"] }
 leptos = "0.6"
 leptos-use = "0.10"
+
+[package.metadata.docs.rs]
+all-features = true
