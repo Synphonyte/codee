@@ -73,6 +73,6 @@ where
 
     fn decode(val: &Self::Encoded) -> Result<T, Self::Error> {
         let intermediate = D::decode(val)?;
-        Ok(T::deserialize(&intermediate).map_err(SerdeLiteDecodeError::SerdeLite)?)
+        T::deserialize(&intermediate).map_err(SerdeLiteDecodeError::SerdeLite)
     }
 }

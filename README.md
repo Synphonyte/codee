@@ -14,15 +14,14 @@ This makes it easily possible to abstract away the serialization and deserializa
 of the concrete crate used. You can write a function like this:
 
 ```rust
-use anyhow::Error;
-use codee::{Decoder, Encoder};
+use codee::{CodecError, Decoder, Encoder};
 
-fn store_value<T, Codec>(value: T) -> Result<(), Error>
+fn store_value<T, Codec>(value: T) -> Result<(), CodecError<<Codec as Encoder<T>>::Error, <Codec as Decoder<T>>::Error>>
 where
     Codec: Encoder<T, Encoded = String> + Decoder<T, Encoded = str>,
 {
-    let encoded = Codec::encode(&value)?;
-    let decoded = Codec::decode(&encoded)?;
+    let encoded = Codec::encode(&value).map_err(CodecError::Encode)?;
+    let decoded = Codec::decode(&encoded).map_err(CodecError::Decode)?;
 
     Ok(())
 }
