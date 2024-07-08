@@ -159,18 +159,13 @@
 pub mod binary;
 mod error;
 mod hybrid;
+#[cfg(feature = "serde_lite")]
+mod serde_lite;
 pub mod string;
 mod traits;
 
 pub use error::*;
 pub use hybrid::*;
+#[cfg(feature = "serde_lite")]
+pub use serde_lite::*;
 pub use traits::*;
-
-// #[cfg(test)]
-// mod tests {
-//     #[test]
-//     fn it_works() {
-//         let result = add(2, 2);
-//         assert_eq!(result, 4);
-//     }
-// }

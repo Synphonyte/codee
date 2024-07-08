@@ -1,4 +1,5 @@
 use crate::{Decoder, Encoder};
+use serde::{Deserialize, Serialize};
 
 /// A codec for encoding JSON messages that relies on [`serde_json`].
 ///
@@ -28,7 +29,7 @@ use crate::{Decoder, Encoder};
 /// ```
 pub struct JsonSerdeCodec;
 
-impl<T: serde::Serialize> Encoder<T> for JsonSerdeCodec {
+impl<T: Serialize> Encoder<T> for JsonSerdeCodec {
     type Error = serde_json::Error;
     type Encoded = String;
 
@@ -37,7 +38,10 @@ impl<T: serde::Serialize> Encoder<T> for JsonSerdeCodec {
     }
 }
 
-impl<T: serde::de::DeserializeOwned> Decoder<T> for JsonSerdeCodec {
+impl<T> Decoder<T> for JsonSerdeCodec
+where
+    for<'de> T: Deserialize<'de>,
+{
     type Error = serde_json::Error;
     type Encoded = str;
 
@@ -52,7 +56,7 @@ mod tests {
 
     #[test]
     fn test_json_codec() {
-        #[derive(Clone, Debug, PartialEq, serde::Serialize, serde::Deserialize)]
+        #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
         struct Test {
             s: String,
             i: i32,
