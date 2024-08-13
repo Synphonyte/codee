@@ -43,22 +43,22 @@
 //!
 //! ### String Codecs
 //!
-//! Please have look at the module [`string`](crate::string).
+//! Please have a look at the module [`string`](crate::string).
 //!
 //! #### Adapters
 //!
 //! - [`string::Base64`] —
-//!   Wraps a binary codec and make it a string codec by representing the binary data as a base64 string.
+//!   Wraps a binary codec and makes it a string codec by representing the binary data as a base64 string.
 //! - [`string::OptionCodec`] —
 //!   Wraps a string codec that encodes `T` to create a codec that encodes `Option<T>`.
 //!
 //! ### Binary Codecs
 //!
-//! Please have look at the module [`binary`](crate::binary).
+//! Please have a look at the module [`binary`](crate::binary).
 //!
 //! ## Custom Codecs
 //!
-//! If you don't find a suitable codecs for your needs, you can implement your own; it's straightforward!
+//! If you don't find a suitable codec for your needs, you can implement your own; it's straightforward!
 //! If you want to create a string codec, you can look at [`string::JsonSerdeCodec`] as a starting point.
 //! In case it's a binary codec, have a look at [`binary::BincodeSerdeCodec`].
 //!
@@ -67,7 +67,7 @@
 //! Versioning is the process of handling long-term data that can outlive our code.
 //!
 //! For example, we could have a settings struct whose members change over time. We might eventually
-//! add timezone support, and we might then remove support for a thousands separator for numbers.
+//! add timezone support, and we might then remove support for a thousand separator for numbers.
 //! Each change results in a new possible version of the stored data. If we stored these settings
 //! in browser storage, we would need to handle all possible versions of the data format that can
 //! occur. If we don't offer versioning, then all settings could revert to the default every time we
