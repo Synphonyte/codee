@@ -59,8 +59,8 @@
 //! ## Custom Codecs
 //!
 //! If you don't find a suitable codecs for your needs, you can implement your own; it's straightforward!
-//! If you want to create a string codec, you can look at [`JsonSerdeCodec`] as a starting point.
-//! In case it's a binary codec, have a look at [`BincodeSerdeCodec`].
+//! If you want to create a string codec, you can look at [`string::JsonSerdeCodec`] as a starting point.
+//! In case it's a binary codec, have a look at [`binary::BincodeSerdeCodec`].
 //!
 //! ## Versioning
 //!
