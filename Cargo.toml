@@ -39,7 +39,7 @@ json_serde_wasm = ["dep:serde", "dep:serde_json", "dep:js-sys", "dep:serde-wasm-
 serde = { version = "1", features = ["derive"] }
 serde-lite = { version = "0.5", features = ["derive"] }
 leptos = "0.6"
-leptos-use = "0.10"
+leptos-use = "0.12"
 
 [package.metadata.docs.rs]
 all-features = true
