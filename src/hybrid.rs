@@ -1,28 +1,6 @@
 use crate::{Decoder, Encoder};
 use thiserror::Error;
 
-pub trait IsBinary<T, E: ?Sized> {
-    fn is_binary() -> bool;
-}
-
-impl<D, T> IsBinary<T, [u8]> for D
-where
-    D: Decoder<T, Encoded = [u8]>,
-{
-    fn is_binary() -> bool {
-        true
-    }
-}
-
-impl<D, T> IsBinary<T, str> for D
-where
-    D: Decoder<T, Encoded = str>,
-{
-    fn is_binary() -> bool {
-        false
-    }
-}
-
 #[derive(Debug, Error)]
 pub enum HybridCoderError<E> {
     #[error("Not implemented: {0}")]
@@ -33,6 +11,8 @@ pub enum HybridCoderError<E> {
 
 pub trait HybridDecoder<T, E: ?Sized> {
     type Error;
+
+    fn is_binary_decoder() -> bool;
 
     fn decode_str(_val: &str) -> Result<T, HybridCoderError<Self::Error>> {
         Err(HybridCoderError::NotImplemented(
@@ -53,6 +33,11 @@ where
 {
     type Error = D::Error;
 
+    #[inline(always)]
+    fn is_binary_decoder() -> bool {
+        true
+    }
+
     fn decode_bin(val: &[u8]) -> Result<T, HybridCoderError<Self::Error>> {
         Ok(D::decode(val)?)
     }
@@ -64,6 +49,11 @@ where
 {
     type Error = D::Error;
 
+    #[inline(always)]
+    fn is_binary_decoder() -> bool {
+        false
+    }
+
     fn decode_str(val: &str) -> Result<T, HybridCoderError<Self::Error>> {
         Ok(D::decode(val)?)
     }
@@ -71,6 +61,8 @@ where
 
 pub trait HybridEncoder<T, E> {
     type Error;
+
+    fn is_binary_encoder() -> bool;
 
     fn encode_str(_val: &T) -> Result<String, HybridCoderError<Self::Error>> {
         Err(HybridCoderError::NotImplemented(
@@ -91,6 +83,11 @@ where
 {
     type Error = E::Error;
 
+    #[inline(always)]
+    fn is_binary_encoder() -> bool {
+        true
+    }
+
     fn encode_bin(val: &T) -> Result<Vec<u8>, HybridCoderError<Self::Error>> {
         Ok(E::encode(val)?)
     }
@@ -101,6 +98,11 @@ where
     E: Encoder<T, Encoded = String>,
 {
     type Error = E::Error;
+
+    #[inline(always)]
+    fn is_binary_encoder() -> bool {
+        false
+    }
 
     fn encode_str(val: &T) -> Result<String, HybridCoderError<Self::Error>> {
         Ok(E::encode(val)?)
