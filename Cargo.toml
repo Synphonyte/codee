@@ -38,13 +38,19 @@ msgpack_serde = ["dep:rmp-serde", "dep:serde"]
 bincode = ["dep:bincode"]
 bincode_serde = ["dep:bincode_v1", "dep:serde"]
 serde_lite = ["dep:serde-lite"]
-json_serde_wasm = ["dep:serde", "dep:serde_json", "dep:js-sys", "dep:serde-wasm-bindgen", "dep:wasm-bindgen"]
+json_serde_wasm = [
+    "dep:serde",
+    "dep:serde_json",
+    "dep:js-sys",
+    "dep:serde-wasm-bindgen",
+    "dep:wasm-bindgen",
+]
 
 
 [dev-dependencies]
 serde = { version = "1", features = ["derive"] }
 serde-lite = { version = "0.5", features = ["derive"] }
-leptos = "0.7"
+leptos = "0.8"
 leptos-use = "0.16"
 
 [package.metadata.docs.rs]
