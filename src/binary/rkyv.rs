@@ -6,7 +6,7 @@ use rkyv::ser::allocator::ArenaHandle;
 use rkyv::{bytecheck, rancor, Archive, Deserialize, Serialize};
 use std::error::Error;
 use std::sync::Arc;
-use rkyv::util::AlignedVec;
+pub use rkyv::util::AlignedVec;
 
 /// A codec that relies on `rkyv` to encode data in the msgpack format.
 ///
