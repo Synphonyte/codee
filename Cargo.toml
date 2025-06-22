@@ -16,7 +16,7 @@ base64 = { version = "0.22", optional = true }
 js-sys = { version = "0.3", optional = true }
 miniserde = { version = "0.1", optional = true }
 prost = { version = "0.14", optional = true }
-rkyv = { version = "0.8.9", optional = true }
+rkyv = { version = "0.8.10", optional = true }
 rmp-serde = { version = "1.1", optional = true }
 serde = { version = "1", optional = true }
 serde_json = { version = "1", optional = true }
