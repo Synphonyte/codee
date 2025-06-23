@@ -3,10 +3,10 @@ use rkyv::api::high::{HighSerializer, HighValidator};
 use rkyv::de::Pool;
 use rkyv::rancor::Strategy;
 use rkyv::ser::allocator::ArenaHandle;
+pub use rkyv::util::AlignedVec;
 use rkyv::{bytecheck, rancor, Archive, Deserialize, Serialize};
 use std::error::Error;
 use std::sync::Arc;
-pub use rkyv::util::AlignedVec;
 
 /// A codec that relies on `rkyv` to encode data in the msgpack format.
 ///
@@ -15,13 +15,13 @@ pub struct RkyvCodec;
 
 impl<T> Encoder<T> for RkyvCodec
 where
-    T: for<'a> Serialize<HighSerializer<AlignedVec, ArenaHandle<'a>, rancor::Error>>,
+    T: for<'a> Serialize<HighSerializer<Vec<u8>, ArenaHandle<'a>, rancor::Error>>,
 {
     type Error = rancor::Error;
-    type Encoded = AlignedVec;
+    type Encoded = Vec<u8>;
 
     fn encode(val: &T) -> Result<Self::Encoded, Self::Error> {
-        rkyv::api::high::to_bytes_in(val, AlignedVec::new())
+        rkyv::api::high::to_bytes_in(val, Vec::new())
     }
 }
 
@@ -33,16 +33,17 @@ where
         + Deserialize<T, Strategy<Pool, rancor::Error>>,
 {
     type Error = Arc<dyn Error>;
-    type Encoded = AlignedVec;
+    type Encoded = [u8];
 
     fn decode(val: &Self::Encoded) -> Result<T, Self::Error> {
-        rkyv::from_bytes::<T, rancor::Error>(val).map_err(|e| Arc::new(e) as Arc<dyn Error>)
+        let mut aligned = AlignedVec::<16>::with_capacity(val.len());
+        aligned.extend_from_slice(val);
+        rkyv::from_bytes::<T, rancor::Error>(&aligned).map_err(|e| Arc::new(e) as Arc<dyn Error>)
     }
 }
 
 #[cfg(test)]
 mod tests {
-    use rkyv::util::AlignedVec;
     use super::*;
 
     #[test]
