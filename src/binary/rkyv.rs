@@ -3,6 +3,7 @@ use rkyv::api::high::{HighSerializer, HighValidator};
 use rkyv::de::Pool;
 use rkyv::rancor::Strategy;
 use rkyv::ser::allocator::ArenaHandle;
+pub use rkyv::util::AlignedVec;
 use rkyv::{bytecheck, rancor, Archive, Deserialize, Serialize};
 use std::error::Error;
 use std::sync::Arc;
@@ -35,7 +36,9 @@ where
     type Encoded = [u8];
 
     fn decode(val: &Self::Encoded) -> Result<T, Self::Error> {
-        rkyv::from_bytes::<T, rancor::Error>(val).map_err(|e| Arc::new(e) as Arc<dyn Error>)
+        let mut aligned = AlignedVec::<16>::with_capacity(val.len());
+        aligned.extend_from_slice(val);
+        rkyv::from_bytes::<T, rancor::Error>(&aligned).map_err(|e| Arc::new(e) as Arc<dyn Error>)
     }
 }
 
