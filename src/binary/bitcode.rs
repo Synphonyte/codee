@@ -64,7 +64,7 @@ mod tests {
             i: 42,
             m: HashMap::from([("a".to_string(), 1), ("b".to_string(), 2)]),
             b: BTreeMap::from([("a".to_string(), 1), ("b".to_string(), 2)]),
-            a: Arc::new(String::from("party time 🎉"))
+            a: Arc::new(String::from("party time 🎉")),
         };
         let enc = BitcodeCodec::encode(&t).unwrap();
         let dec: Test = BitcodeCodec::decode(&enc).unwrap();
