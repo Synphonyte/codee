@@ -73,7 +73,7 @@
 //! occur. If we don't offer versioning, then all settings could revert to the default every time we
 //! encounter an old format.
 //!
-//! How best to handle versioning depends on the codec involved:
+//! How to handle versioning best depends on the codec involved:
 //!
 //! - The `FromToStringCodec` can avoid versioning entirely by keeping
 //!   to primitive types. In our example above, we could have decomposed the settings struct into

@@ -1,8 +1,7 @@
 [package]
 name = "codee"
-version = "0.3.2"
+version = "0.3.3"
 edition = "2021"
-authors = ["Marc-Stefan Cassola"]
 categories = ["encoding"]
 description = "Easy and flexible way of encoding and decoding data into either strings or bytes"
 exclude = ["examples/", "tests/"]
@@ -10,6 +9,9 @@ keywords = ["codec", "utilities", "serialization", "deserialization"]
 license = "MIT OR Apache-2.0"
 readme = "README.md"
 repository = "https://github.com/Synphonyte/codee"
+
+[package.metadata.docs.rs]
+all-features = true
 
 [dependencies]
 base64 = { version = "0.22", optional = true }
@@ -43,17 +45,14 @@ bitcode = ["dep:bitcode"]
 bitcode_serde = ["dep:bitcode", "bitcode/serde", "dep:serde"]
 serde_lite = ["dep:serde-lite"]
 json_serde_wasm = [
-    "dep:serde",
-    "dep:serde_json",
-    "dep:js-sys",
-    "dep:serde-wasm-bindgen",
-    "dep:wasm-bindgen",
+  "dep:serde",
+  "dep:serde_json",
+  "dep:js-sys",
+  "dep:serde-wasm-bindgen",
+  "dep:wasm-bindgen",
 ]
 
 
 [dev-dependencies]
 serde = { version = "1", features = ["derive"] }
 serde-lite = { version = "0.5", features = ["derive"] }
-
-[package.metadata.docs.rs]
-all-features = true
