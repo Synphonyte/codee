@@ -1,6 +1,6 @@
 [package]
 name = "codee"
-version = "0.3.3"
+version = "0.3.4"
 edition = "2021"
 categories = ["encoding"]
 description = "Easy and flexible way of encoding and decoding data into either strings or bytes"
