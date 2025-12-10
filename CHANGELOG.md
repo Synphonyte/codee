@@ -3,10 +3,15 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.5] - 2025-12-10
+
+### New Codec
+
+- Added the codec `PostcardCodec` (thanks to @ tysen).
+
 ## [0.3.4] - 2025-11-19
 
 - `CodecError` now is `Copy` and/or `Clone` if the encompassing codec errors are `Copy` and/or `Clone` respectively.
-
 
 ## [0.3.3] - 2025-10-08
 

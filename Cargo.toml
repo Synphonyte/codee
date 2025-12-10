@@ -1,24 +1,28 @@
 [package]
 name = "codee"
-version = "0.3.4"
+version = "0.3.5"
 edition = "2021"
-categories = ["encoding"]
 description = "Easy and flexible way of encoding and decoding data into either strings or bytes"
-exclude = ["examples/", "tests/"]
-keywords = ["codec", "utilities", "serialization", "deserialization"]
-license = "MIT OR Apache-2.0"
 readme = "README.md"
 repository = "https://github.com/Synphonyte/codee"
+license = "MIT OR Apache-2.0"
+keywords = ["codec", "deserialization", "serialization", "utilities"]
+categories = ["encoding"]
+exclude = ["examples/", "tests/"]
 
 [package.metadata.docs.rs]
 all-features = true
 
 [dependencies]
 base64 = { version = "0.22", optional = true }
+# Optional bincode v2 for bincode feature
+bincode = { package = "bincode", version = "2.0.1", optional = true }
+# Optional bincode v1 for bincode_serde feature
+bincode_v1 = { package = "bincode", version = "1", optional = true }
 bitcode = { version = "0.6.6", optional = true }
 js-sys = { version = "0.3", optional = true }
 miniserde = { version = "0.1", optional = true }
-postcard = { version = "1", default-features = false, optional = true, features = ["alloc"] }
+postcard = { version = "1", default-features = false, features = ["alloc"], optional = true }
 prost = { version = "0.14", optional = true }
 rkyv = { version = "0.8.10", optional = true }
 rmp-serde = { version = "1.1", optional = true }
@@ -29,32 +33,25 @@ serde-wasm-bindgen = { version = "0.6", optional = true }
 thiserror = "2.0"
 wasm-bindgen = { version = "0.2", optional = true }
 
-# Optional bincode v1 for bincode_serde feature
-bincode_v1 = { package = "bincode", version = "1", optional = true }
-
-# Optional bincode v2 for bincode feature
-bincode = { package = "bincode", version = "2.0.1", optional = true }
-
-[features]
-rkyv = ["dep:rkyv"]
-prost = ["dep:prost"]
-json_serde = ["dep:serde_json", "dep:serde"]
-msgpack_serde = ["dep:rmp-serde", "dep:serde"]
-postcard = ["dep:postcard", "dep:serde"]
-bincode = ["dep:bincode"]
-bincode_serde = ["dep:bincode_v1", "dep:serde"]
-bitcode = ["dep:bitcode"]
-bitcode_serde = ["dep:bitcode", "bitcode/serde", "dep:serde"]
-serde_lite = ["dep:serde-lite"]
-json_serde_wasm = [
-  "dep:serde",
-  "dep:serde_json",
-  "dep:js-sys",
-  "dep:serde-wasm-bindgen",
-  "dep:wasm-bindgen",
-]
-
-
 [dev-dependencies]
 serde = { version = "1", features = ["derive"] }
 serde-lite = { version = "0.5", features = ["derive"] }
+
+[features]
+bincode = ["dep:bincode"]
+bincode_serde = ["dep:bincode_v1", "dep:serde"]
+bitcode = ["dep:bitcode"]
+bitcode_serde = ["bitcode/serde", "dep:bitcode", "dep:serde"]
+json_serde = ["dep:serde", "dep:serde_json"]
+json_serde_wasm = [
+  "dep:js-sys",
+  "dep:serde",
+  "dep:serde_json",
+  "dep:serde-wasm-bindgen",
+  "dep:wasm-bindgen",
+]
+msgpack_serde = ["dep:rmp-serde", "dep:serde"]
+postcard = ["dep:postcard", "dep:serde"]
+prost = ["dep:prost"]
+rkyv = ["dep:rkyv"]
+serde_lite = ["dep:serde-lite"]
