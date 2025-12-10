@@ -9,6 +9,8 @@ mod bitcode_serde;
 mod from_to_bytes;
 #[cfg(feature = "msgpack_serde")]
 mod msgpack_serde;
+#[cfg(feature = "postcard")]
+mod postcard;
 #[cfg(feature = "prost")]
 mod prost;
 #[cfg(feature = "rkyv")]
@@ -26,6 +28,8 @@ pub use bitcode_serde::*;
 pub use from_to_bytes::*;
 #[cfg(feature = "msgpack_serde")]
 pub use msgpack_serde::*;
+#[cfg(feature = "postcard")]
+pub use postcard::*;
 #[cfg(feature = "prost")]
 pub use prost::*;
 #[cfg(feature = "rkyv")]
