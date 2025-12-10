@@ -18,6 +18,7 @@ base64 = { version = "0.22", optional = true }
 bitcode = { version = "0.6.6", optional = true }
 js-sys = { version = "0.3", optional = true }
 miniserde = { version = "0.1", optional = true }
+postcard = { version = "1", default-features = false, optional = true, features = ["alloc"] }
 prost = { version = "0.14", optional = true }
 rkyv = { version = "0.8.10", optional = true }
 rmp-serde = { version = "1.1", optional = true }
@@ -39,6 +40,7 @@ rkyv = ["dep:rkyv"]
 prost = ["dep:prost"]
 json_serde = ["dep:serde_json", "dep:serde"]
 msgpack_serde = ["dep:rmp-serde", "dep:serde"]
+postcard = ["dep:postcard", "dep:serde"]
 bincode = ["dep:bincode"]
 bincode_serde = ["dep:bincode_v1", "dep:serde"]
 bitcode = ["dep:bitcode"]
