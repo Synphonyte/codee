@@ -16,7 +16,7 @@ all-features = true
 [dependencies]
 base64 = { version = "0.22", optional = true }
 # Optional bincode v2 for bincode feature
-bincode = { package = "bincode", version = "2.0.1", optional = true }
+bincode = { package = "bincode", version = "3.0.0", optional = true }
 # Optional bincode v1 for bincode_serde feature
 bincode_v1 = { package = "bincode", version = "1", optional = true }
 bitcode = { version = "0.6.6", optional = true }
